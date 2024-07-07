@@ -13,7 +13,7 @@ export default function Student() {
     const[students, setStudents]=useState([])
 
     const handleClick = (e)=>{
-        e.preventDefault()
+        //e.preventDefault()
         const student = {name, address}
         console.log(student)
         fetch("http://localhost:8080/student/add", {
