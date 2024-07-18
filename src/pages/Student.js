@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import {Link } from "react-router-dom";
 
 export default function Student() {
     const paperStyle = {padding: '50px 20px', width:600, margin: "20px auto"}
@@ -25,14 +26,7 @@ export default function Student() {
         })
     }
 
-    useEffect(()=> {
-        fetch("http://localhost:8080/student/getAll")
-        .then(res=>res.json())
-        .then((result) => {
-            setStudents(result);
-        }
-    )
-    }, [])
+
   return (
     <Paper elevation = {3} style = {paperStyle}>
         <h1>Add Student</h1>
@@ -55,20 +49,11 @@ export default function Student() {
       />
       {name}
       {address}
-      <Button variant="contained" onClick={handleClick}>Submit</Button>
+      <Link to="/all"><Button variant="contained" onClick={handleClick}>Submit</Button></Link>
       
 
     </Box>
-    <Paper elevation={3} style={innerStyle}>
-        {students.map(student => (
-            <ul elevation={6} style={{margin:"10px", padding:"15px", textAlign:"left"}} key={student.id}> 
-            <li>Id: {student.id}</li>
-            <li>Name: {student.name}</li>
-            <li>Address: {student.address}</li>
-            </ul>
-        ))}
-        
-    </Paper>
+
     </Paper>
 
 
