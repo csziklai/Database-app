@@ -8,10 +8,10 @@ import {Link } from "react-router-dom";
 
 export default function Student() {
     const paperStyle = {padding: '50px 20px', width:600, margin: "20px auto"}
-    const innerStyle = {padding: '50px 20px', width:500, margin: "20px auto"}
+    //const innerStyle = {padding: '50px 20px', width:500, margin: "20px auto"}
     const[name, setName]=useState('')
     const[address, setAddress]=useState('')
-    const[students, setStudents]=useState([])
+    //const[students, setStudents]=useState([])
 
     const handleClick = (e)=>{
         //e.preventDefault()

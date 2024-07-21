@@ -1,12 +1,18 @@
 import * as React from 'react';
 import {useState} from 'react';
+import {useLocation} from 'react-router-dom'
 
-function StudentInfo(id) {
-    const[students, setStudents]=useState([]);
+function StudentInfo() {
+    //const[students, setStudents]=useState([]);
+    const location = useLocation();
+
     return (
         <div>
-            <h1></h1>
+            <h1>{location.state.name}</h1>
+            
             <p>Student Information will be displayed here</p>
         </div>
     );
 }
+
+export default StudentInfo;
