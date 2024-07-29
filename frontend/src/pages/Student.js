@@ -39,11 +39,11 @@ export default function Student() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
+      <TextField id="outlined-basic" label="Full name" variant="outlined" fullWidth
       value ={name}
       onChange={(e)=> setName(e.target.value)}
       />
-      <TextField id="outlined-basic" label="Student Address" variant="outlined" fullWidth
+      <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth
       value={address}
       onChange={(e)=> setAddress(e.target.value)}
       />
