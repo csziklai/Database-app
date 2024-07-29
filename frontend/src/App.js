@@ -4,6 +4,7 @@ import Appbar from './components/Appbar';
 import Student from './pages/Student';
 import AllStudents from './pages/AllStudents';
 import StudentInfo from './components/StudentInfo';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
       <Router>
         <Appbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/all" element={<AllStudents />} />
-          <Route path="/" element={<Student />} />
-          <Route path="/students/:id" element={<StudentInfo />} />
+          <Route path="/add" element={<Student />} />
+          <Route path="/student/:id" element={<StudentInfo />} />
         </Routes>
 
       </Router>

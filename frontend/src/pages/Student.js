@@ -47,8 +47,6 @@ export default function Student() {
       value={address}
       onChange={(e)=> setAddress(e.target.value)}
       />
-      {name}
-      {address}
       <Link to="/all"><Button variant="contained" onClick={handleClick}>Submit</Button></Link>
       
 

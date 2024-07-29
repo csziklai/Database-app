@@ -1,18 +1,42 @@
-import * as React from 'react';
-import {useState} from 'react';
-import {useLocation} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
 
-function StudentInfo() {
-    //const[students, setStudents]=useState([]);
+const StudentInfo = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if (open) {
+            navigate("/all?open=true");
+        }
+    }, [open, navigate]);
+
+    const handleClick = (e) => {
+        // e.preventDefault();
+        const student = { name: location.state.name, address: location.state.address };
+        const id = location.state.id;
+
+        fetch(`http://localhost:8080/student/getAll/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(student)
+        }).then(() => {
+            console.log("Student deleted");
+            setOpen(true);
+        });
+    };
 
     return (
-        <div>
-            <h1>{location.state.name}</h1>
-            
-            <p>Student Information will be displayed here</p>
+        <div className="card">
+            <div className='card-body' style={{ width: '18rem' }}>
+                <h1 className='card-title'>{location.state.name}</h1>
+                <p className='card-text'>Email: {location.state.address}</p>
+                <Button color="error" onClick={handleClick}>Delete</Button>
+            </div>
         </div>
     );
-}
+};
 
 export default StudentInfo;
