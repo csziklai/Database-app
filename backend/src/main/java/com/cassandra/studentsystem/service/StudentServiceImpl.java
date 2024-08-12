@@ -4,6 +4,8 @@ import com.cassandra.studentsystem.model.Student;
 import com.cassandra.studentsystem.repository.StudentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +27,10 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public void deleteStudent(int id) {
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Student> findAll(Pageable pageable, String searchText) {
+        return studentRepository.findAllStudents(pageable, searchText);
     }
 }
