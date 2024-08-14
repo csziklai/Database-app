@@ -68,27 +68,32 @@ export default function AllStudents(props) {
 
     const searchData = (currentPage) => {
         currentPage -= 1;
-            fetch(`/search/${search}`)
+            fetch(`http://localhost:8080/student/search/${search}`)
                 .then(res => res.json())
                 .then((result) => {
-                    setStudents(result);
+                    setStudents(result.content);
+                    console.log(result);
                 });
-        axios
-          .get(
-            "/search/" +
-              search 
-            //   "?page=" +
-            //   currentPage //+
-            //   "&size=" +
-            //   this.state.booksPerPage
-          )
-          .then((response) => response.data)
-          .then((data) => {
-            setStudents(data.content);
-            //   totalPages: data.totalPages,
-            //   totalElements: data.totalElements,
-            //   currentPage: data.number + 1,
-            });
+        // axios
+        //   .get(
+        //     "/search/" +
+        //       search 
+        //     //   "?page=" +
+        //     //   currentPage //+
+        //     //   "&size=" +
+        //     //   this.state.booksPerPage
+        //   )
+        //   .then((response) => response.data)
+        //   .then((data) => {
+        //     setStudents(data.content);
+        //     console.log(data);
+        //     //   totalPages: data.totalPages,
+        //     //   totalElements: data.totalElements,
+        //     //   currentPage: data.number + 1,
+        //     }).catch(error => {
+        //         console.error('There was an error!', error);
+        //       });
+
       };
 
     return (
@@ -99,7 +104,7 @@ export default function AllStudents(props) {
                 InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <SearchIcon onClick={searchData}>  </SearchIcon>
+                        <SearchIcon style = {{ cursor: "pointer"}} onClick={searchData}></SearchIcon>
                       </InputAdornment>
                     ),
                   }} />
