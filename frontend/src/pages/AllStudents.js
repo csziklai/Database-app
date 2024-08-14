@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 
 export default function AllStudents(props) {
@@ -62,12 +68,17 @@ export default function AllStudents(props) {
 
     const searchData = (currentPage) => {
         currentPage -= 1;
+            fetch(`/search/${search}`)
+                .then(res => res.json())
+                .then((result) => {
+                    setStudents(result);
+                });
         axios
           .get(
-            "http://localhost:8080/search/" +
-              search +
-              "?page=" +
-              currentPage //+
+            "/search/" +
+              search 
+            //   "?page=" +
+            //   currentPage //+
             //   "&size=" +
             //   this.state.booksPerPage
           )
@@ -93,7 +104,32 @@ export default function AllStudents(props) {
                     ),
                   }} />
             </div>
-            <Paper elevation={3} style={innerStyle}>
+            <TableContainer component={Paper} style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '1000px' }}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Email</TableCell>
+                    <TableCell align="right">Credits</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
+                {students.map((student) => (
+                    <TableRow
+                    key={student.id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                    <TableCell component="th" scope="row" style = {{ cursor: "pointer"}} onClick={() => navigate(`/student/${student.id}`, { state: student })}>
+                        {student.name}
+                    </TableCell>
+                    <TableCell align="right">{student.address}</TableCell>
+                    <TableCell align="right">{student.credits}</TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+            </TableContainer>
+            {/* <Paper elevation={3} style={innerStyle}>
                 {students.map(student => (
                     <ul elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left", cursor: "pointer" }}
                         key={student.id}>
@@ -101,7 +137,7 @@ export default function AllStudents(props) {
                         <li>Email: {student.address}</li>
                     </ul>
                 ))}
-            </Paper>
+            </Paper> */}
 
             <Snackbar
                 open={open}
