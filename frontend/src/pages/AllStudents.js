@@ -17,7 +17,6 @@ export default function AllStudents(props) {
     const [students, setStudents] = useState([]);
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState("");
-    const innerStyle = { padding: '50px 20px', width: 500, margin: "20px auto" };
     const query = new URLSearchParams(window.location.search);
     const queryOpen = query.get("open");
 
@@ -72,35 +71,23 @@ export default function AllStudents(props) {
                 .then(res => res.json())
                 .then((result) => {
                     setStudents(result.content);
-                    console.log(result);
                 });
-        // axios
-        //   .get(
-        //     "/search/" +
-        //       search 
-        //     //   "?page=" +
-        //     //   currentPage //+
-        //     //   "&size=" +
-        //     //   this.state.booksPerPage
-        //   )
-        //   .then((response) => response.data)
-        //   .then((data) => {
-        //     setStudents(data.content);
-        //     console.log(data);
-        //     //   totalPages: data.totalPages,
-        //     //   totalElements: data.totalElements,
-        //     //   currentPage: data.number + 1,
-        //     }).catch(error => {
-        //         console.error('There was an error!', error);
-        //       });
+        setSearch("");
 
       };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            searchData();
+        }
+    };
 
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px', marginTop: '20px', marginRight: '40px' }}>
                 <TextField id="fullWidth" label="Search" variant="outlined" size="small"
                 onChange={searchChange}
+                onKeyDown={handleKeyPress}
                 InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -109,6 +96,7 @@ export default function AllStudents(props) {
                     ),
                   }} />
             </div>
+            {(students.length === 0) ? <h4>No results found.</h4> : ''}
             <TableContainer component={Paper} style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '1000px' }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -134,15 +122,6 @@ export default function AllStudents(props) {
                 </TableBody>
             </Table>
             </TableContainer>
-            {/* <Paper elevation={3} style={innerStyle}>
-                {students.map(student => (
-                    <ul elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left", cursor: "pointer" }}
-                        key={student.id}>
-                        <li onClick={() => navigate(`/student/${student.id}`, { state: student })}>Name: {student.name}</li>
-                        <li>Email: {student.address}</li>
-                    </ul>
-                ))}
-            </Paper> */}
 
             <Snackbar
                 open={open}

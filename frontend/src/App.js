@@ -17,12 +17,7 @@ function App() {
           <Route path="/add" element={<Student />} />
           <Route path="/student/:id" element={<StudentInfo />} />
         </Routes>
-
       </Router>
-      
-      
-
-
     </div>
   );
 }
