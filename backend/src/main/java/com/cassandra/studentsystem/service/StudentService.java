@@ -9,6 +9,7 @@ public interface StudentService {
     public Student saveStudent(Student student);
     public List<Student> getAllStudents();
     public void deleteStudent(int id);
+    public void editStudent(int id);
     public Page<Student> findAll(Pageable pageable, String searchText);
 
 }
