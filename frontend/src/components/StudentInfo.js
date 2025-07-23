@@ -30,7 +30,8 @@ const StudentInfo = () => {
     const handleEdit = (e) => {
         e.preventDefault();
         const student = { name: location.state.name, address: location.state.address };
-        navigate(`/edit/${student.id}`, { state: student });
+        const id = location.state.id;
+        navigate(`/edit/${id}`, { state: {id: id, name: student.name, address: student.address} });
 
     }
 

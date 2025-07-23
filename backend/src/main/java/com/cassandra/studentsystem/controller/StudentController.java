@@ -46,18 +46,20 @@ public class StudentController {
     public String delete(@PathVariable("id") Integer id) {
         studentService.deleteStudent(id);
         return "Student was deleted";
-
     }
 
     @PutMapping("getAll/{id}")
     public String edit(@PathVariable("id") Integer id, @RequestBody Student updatedStudent) {
-        Optional<Student> optStudent = studentRepository.findById(id);
+        Optional<Student> optStudent = studentService.findStudent(id);
 
         if (optStudent.isPresent()) {
+            System.out.println(optStudent);
             Student studToUpdate = optStudent.get();
             studToUpdate.setName(updatedStudent.getName());
+            System.out.println(updatedStudent.getAddress());
             studToUpdate.setAddress(updatedStudent.getAddress());
-            studentRepository.save(studToUpdate);
+            System.out.println(studToUpdate.getAddress());
+            studentService.saveStudent(studToUpdate);
             return "Student info was edited";
         } else {
             return "Student not found";

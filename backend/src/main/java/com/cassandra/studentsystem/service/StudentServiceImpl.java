@@ -30,6 +30,12 @@ public class StudentServiceImpl implements StudentService{
         studentRepository.deleteById(id);
     }
 
+    @Override
+    public Optional<Student> findStudent(int id) {
+        return studentRepository.findById(id);
+    }
+
+
 //    @Override
 //    public void editStudent(int id) {
 //        Optional<Student> student = studentRepository.findById(id);

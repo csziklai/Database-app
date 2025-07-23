@@ -12,6 +12,7 @@ const EditInfo = () => {
         e.preventDefault();
         const student = { name, address };
         const id = location.state.id;
+        console.log(id);
 
         fetch(`http://localhost:8080/student/getAll/${id}`, {
             method: "PUT",
@@ -19,7 +20,7 @@ const EditInfo = () => {
             body: JSON.stringify(student)
         }).then(() => {
             console.log("Student updated");
-            //navigate("/all"); UNCOMMENT
+            navigate("/all");
         });
     };
 
