@@ -3,6 +3,7 @@ package com.cassandra.studentsystem.service;
 import com.cassandra.studentsystem.model.Student;
 import com.cassandra.studentsystem.repository.StudentRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,23 @@ public class StudentServiceImpl implements StudentService{
     public void deleteStudent(int id) {
         studentRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Student> findStudent(int id) {
+        return studentRepository.findById(id);
+    }
+
+
+//    @Override
+//    public void editStudent(int id) {
+//        Optional<Student> student = studentRepository.findById(id);
+//
+//        if (student.isPresent()) {
+//            Student studToUpdate = student.get();
+//            studToUpdate.setName();
+//            studToUpdate.setAddress();
+//        }
+//    }
 
     @Override
     public Page<Student> findAll(Pageable pageable, String searchText) {

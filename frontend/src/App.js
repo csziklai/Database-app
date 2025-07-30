@@ -5,6 +5,7 @@ import Student from './pages/Student';
 import AllStudents from './pages/AllStudents';
 import StudentInfo from './components/StudentInfo';
 import Home from './pages/Home';
+import EditInfo from './components/EditInfo';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/all" element={<AllStudents />} />
           <Route path="/add" element={<Student />} />
           <Route path="/student/:id" element={<StudentInfo />} />
+          <Route path="/edit/:id" element={<EditInfo />} />
         </Routes>
       </Router>
     </div>

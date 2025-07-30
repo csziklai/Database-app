@@ -14,7 +14,6 @@ const StudentInfo = () => {
     }, [open, navigate]);
 
     const handleClick = (e) => {
-        // e.preventDefault();
         const student = { name: location.state.name, address: location.state.address };
         const id = location.state.id;
 
@@ -28,12 +27,22 @@ const StudentInfo = () => {
         });
     };
 
+    const handleEdit = (e) => {
+        e.preventDefault();
+        const student = { name: location.state.name, address: location.state.address };
+        const id = location.state.id;
+        navigate(`/edit/${id}`, { state: {id: id, name: student.name, address: student.address} });
+
+    }
+
     return (
         <div className="card">
             <div className='card-body' style={{ width: '18rem' }}>
                 <h1 className='card-title'>{location.state.name}</h1>
                 <p className='card-text'>Email: {location.state.address}</p>
+                <Button onClick={handleEdit}>Edit</Button>
                 <Button color="error" onClick={handleClick}>Delete</Button>
+
             </div>
         </div>
     );
