@@ -16,7 +16,7 @@ const EditInfo = () => {
         const id = location.state.id;
         console.log(id);
 
-        fetch(`http://localhost:8080/student/getAll/${id}`, {
+        fetch(`http://localhost:8080/student/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(student)

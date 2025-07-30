@@ -48,7 +48,7 @@ public class StudentController {
         return "Student was deleted";
     }
 
-    @PutMapping("getAll/{id}")
+    @PutMapping("/{id}")
     public String edit(@PathVariable("id") Integer id, @RequestBody Student updatedStudent) {
         Optional<Student> optStudent = studentService.findStudent(id);
 
