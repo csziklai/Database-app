@@ -36,19 +36,14 @@ public class StudentServiceImpl implements StudentService{
     }
 
 
-//    @Override
-//    public void editStudent(int id) {
-//        Optional<Student> student = studentRepository.findById(id);
-//
-//        if (student.isPresent()) {
-//            Student studToUpdate = student.get();
-//            studToUpdate.setName();
-//            studToUpdate.setAddress();
-//        }
-//    }
-
     @Override
     public Page<Student> findAll(Pageable pageable, String searchText) {
         return studentRepository.findAllStudents(pageable, searchText);
+    }
+
+    @Override
+    public long countStudents() {
+        System.out.println("count service reached");
+        return studentRepository.count();
     }
 }

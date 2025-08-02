@@ -73,4 +73,11 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findAll(pageable, searchText), HttpStatus.OK);
     }
 
+
+    @GetMapping("/count")
+    public long getStudentCount() {
+        System.out.println("count reached");
+        return studentService.countStudents();
+    }
+
 }

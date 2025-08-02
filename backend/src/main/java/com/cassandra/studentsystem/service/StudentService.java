@@ -13,5 +13,6 @@ public interface StudentService {
     //public void editStudent(int id);
     public Optional<Student> findStudent(int id);
     public Page<Student> findAll(Pageable pageable, String searchText);
+    public long countStudents();
 
 }
