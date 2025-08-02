@@ -186,7 +186,10 @@ export default function AllStudents(props) {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {students.map((student) => (
+                {(rowsPerPage > 0
+            ? students.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : students
+          ).map((student) => (
                     <TableRow
                     key={student.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
